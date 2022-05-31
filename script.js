@@ -1,14 +1,8 @@
 let userAnswers = [],
   correctAnswers = [
-    3, 1, 5, 5, 2, 1, 2, 2, 2, 6, 4, 1, 4, 7, 2, 3, 1, 6, 5, 8, 4, 4, 7, 6, 
-    4, 7, 7, 3, 2, 8,
+    3, 1, 5, 5, 2, 1, 2, 2, 2, 6, 4, 1, 4, 7, 2, 3, 1, 6, 5, 8, 4, 4, 7, 6, 4,
+    7, 7, 3, 2, 8,
   ];
-
-function userInput() {
-  window.onclick = (e) => {
-    userAnswers.push(e.target.id); // get the element ID
-  };
-}
 
 document.querySelector("body").innerHTML = `
 <section id="whole-question">
@@ -22,8 +16,18 @@ let htmlWholeQuestion = document.querySelector("#whole-question"),
   htmlAnswers = document.querySelector("#answers");
 
 function applyQuestion(qNum) {
-  // qNum == Question Number
+  if (qNum >= 2) {
+    // remove previous test
+    htmlQuestion.querySelector("img").remove();
+
+    for (let prevANum = 5; prevANum >= 0; prevANum--) {
+      htmlAnswers.querySelectorAll("img")[prevANum].remove();
+    }
+  }
+
+  // qNum == Number of question
   if (qNum >= 1) {
+    // add the next test
     let addQuestion = document.createElement("img");
     addQuestion.setAttribute(
       "src",
@@ -31,8 +35,8 @@ function applyQuestion(qNum) {
     );
     htmlQuestion.appendChild(addQuestion);
 
+    // aNum = Number of answers
     for (let aNum = 1; aNum <= 6; aNum++) {
-      // aNum == Answer Number
       let addAnswers = document.createElement("img");
       addAnswers.setAttribute("id", aNum);
       addAnswers.setAttribute(
@@ -44,5 +48,14 @@ function applyQuestion(qNum) {
     }
   }
 }
+
+function userInput() {
+  window.onclick = (e) => {
+    userAnswers.push(e.target.id); // get the element ID
+  };
+
+  applyQuestion(2);
+}
+
 
 applyQuestion(1);
