@@ -1,1 +1,191 @@
-/* style */
+/* CSS Reset */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+ul > li {
+  display: inline-block;
+}
+
+* {
+  text-decoration: none;
+  color: inherit;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+/* General CSS */
+:root {
+  --blue: #006ee3;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #dc3545;
+  --orange: #fd7e14;
+  --yellow: #ffc107;
+  --green: #28a745;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --white: #fff;
+  --gray: rgba(238, 238, 238, 0.78);
+  --gray-dark: #aaacad;
+  --gray-blue: #474559;
+  --success: #28a745;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #1c1e1f;
+}
+
+body {
+  font-size: 16px;
+  line-height: 20px;
+  color: var(--light);
+  background-color: var(--gray-blue);
+}
+
+section {
+  padding-top: 50px;
+}
+
+.seperator {
+  height: 200px;
+}
+ img {
+    transition: all 0.4s ease-in-out;
+ }
+
+/* actual CSS */
+#whole-question {
+    text-align: center;
+}
+
+#whole-question > p {
+    font-size: 30px;
+    line-height: 40px;
+    margin: 30px 0;
+}
+
+#question > img {
+    background-color: var(--light);
+}
+
+#answers {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 15px;
+    max-width: 700px;
+    margin:  0 auto;
+    padding: 10px 0;
+}
+
+#answers > img {
+    /* margin-top: 10px; */
+    background-color: var(--light);
+    cursor: pointer;
+}
+
+#answers > img:hover {
+    transform: scale(1.15);
+}
