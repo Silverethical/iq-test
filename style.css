@@ -138,7 +138,7 @@ ul > li {
 }
 
 body {
-  font-size: 16px;
+  font: normal 400 16px "Glory", sans-serif;
   line-height: 20px;
   color: var(--light);
   background-color: var(--gray-blue);
@@ -151,41 +151,41 @@ section {
 .seperator {
   height: 200px;
 }
- img {
-    transition: all 0.4s ease-in-out;
- }
+img {
+  transition: all 0.4s ease-in-out;
+}
 
 /* actual CSS */
 #whole-question {
-    text-align: center;
+  text-align: center;
 }
 
 #whole-question > p {
-    font-size: 30px;
-    line-height: 40px;
-    margin: 30px 0;
+  font-size: 30px;
+  line-height: 40px;
+  margin: 30px 0;
 }
 
 #question > img {
-    background-color: var(--light);
+  background-color: var(--light);
 }
 
 #answers {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 15px;
-    max-width: 700px;
-    margin:  0 auto;
-    padding: 10px 0;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 15px;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 10px 0;
 }
 
 #answers > img {
-    /* margin-top: 10px; */
-    background-color: var(--light);
-    cursor: pointer;
+  /* margin-top: 10px; */
+  background-color: var(--light);
+  cursor: pointer;
 }
 
 #answers > img:hover {
-    transform: scale(1.15);
+  transform: scale(1.15);
 }
