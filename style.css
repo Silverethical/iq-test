@@ -163,12 +163,11 @@ img {
 }
 
 #whole-question {
-  background:rgb(237, 242, 245);
+  background:rgba(237, 242, 245, 0.80);
   max-width: 1000px;
   margin: 20px auto;
   border-radius: 10%;
   border: dotted cadetblue thick;
-  opacity: 95%;
 }
 
 #whole-question > p {
