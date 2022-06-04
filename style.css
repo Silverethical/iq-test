@@ -173,6 +173,7 @@ img {
   margin: 20px auto;
   border-radius: 10%;
   border: dotted cadetblue thick;
+  min-height: 700px;
 }
 
 #whole-question > p:first-of-type {
