@@ -5,11 +5,14 @@ let userAnswers = [],
   ];
 
 document.querySelector("body").innerHTML =
- `<section id="whole-question">
+//just creat background for better desing
+ `  <div id="background">
+ <section id="whole-question">
     <p>Please choose the right answer by clicking on it</p>
     <div id="question"></div>
     <div id="answers"></div>
-</section>`;
+</section>
+    </div>`;
 
 let htmlWholeQuestion = document.querySelector("#whole-question"),
   htmlQuestion = document.querySelector("#question"),

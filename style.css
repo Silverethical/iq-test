@@ -158,6 +158,14 @@ img {
 }
 
 /* actual CSS */
+
+#background {
+  background: rgba(237, 242, 245, 0.60);
+  width: 1100px;
+  margin: 4px auto;
+  padding: 1px;
+  border-radius: 10%;}
+
 #whole-question {
   text-align: center;
 }
