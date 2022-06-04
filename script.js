@@ -1,25 +1,28 @@
-let userAnswers = [], // answers that the user has chosen
+let maxQNum = 30, // maximum number of questions
+userAnswers = [], // answers that the user has chosen
   correctAnswers = [
-    3, 1, 5, 5, 2, 1, 2, 2, 2, 6, 4, 1, 4, 7, 2, 3, 1, 6, 5, 8, 4, 4, 7, 6, 4,
-    7, 7, 3, 2, 8,
-  ]; // the correct answers to be compared with user's
+    3, 1, 5, 5, 2, 1, 2, 2, 2, 6, 4, 1, 4, 7, 2, 3, 1, 6, 5, 8, 4, 4, 7, 6,
+    4, 7, 7, 3, 2, 8,
+  ]; // the correct answers to be compared with user's answers
 
 // add html layout
 document.querySelector("body").innerHTML = `
 <div class="seperator"></div>
 
-<section id="form"></section>
-
 <div id="background">
-  <section id="whole-question">
-    <p>Please choose the right answer by clicking on it</p>
-    <div id="question"></div>
-    <p>Options:</p>
-    <div id="answers"></div>
-  </section>
+  <div id="foreground">
+    <section id="form"></section>
 
-  <section id="result"></section>
-</div>`;
+    <section id="whole-question">
+      <p>Please choose the right answer by clicking on it</p>
+      <div id="question"></div>
+      <p>Options:</p>
+      <div id="answers"></div>
+    </section>
+
+    <section id="result"></section>
+    </div>
+  </div>`;
 
 // selectors
 let htmlWholeQuestion = document.querySelector("#whole-question"),
@@ -27,29 +30,22 @@ let htmlWholeQuestion = document.querySelector("#whole-question"),
   htmlAnswers = document.querySelector("#answers"),
   htmlResult = document.querySelector("#result");
 
-// show the test on the page
+// show the question on the page
 function applyQuestion(qNum) {
-  // remove previous test if it exists
+  // remove previous question if it exists
   if (!!htmlQuestion.querySelector("img")) {
     htmlQuestion.querySelector("img").remove();
   }
-  // remove options for previous test if they exist
+  // remove options for previous question if they exist
   if (!!htmlAnswers.querySelectorAll("img")) {
-    for (
-      let prevANum = htmlAnswers.querySelectorAll("img").length - 1;
-      prevANum >= 0;
-      prevANum--
-    ) {
-      htmlAnswers.querySelectorAll("img")[prevANum].remove();
+    for (let i = htmlAnswers.querySelectorAll("img").length - 1; i >= 0; i--) {
+      htmlAnswers.querySelectorAll("img")[i].remove();
     }
   }
 
-  // qNum == Question number
-  if (qNum == 31) {
-    htmlWholeQuestion.querySelectorAll("p")[1].remove();
-    htmlWholeQuestion.querySelectorAll("p")[0].remove();
-  } else if (qNum >= 1) {
-    // add the next test
+  // qNum == question number
+  if (qNum >= 1 && qNum <= maxQNum) {
+    // add the next question
     let addQuestion = document.createElement("img");
     addQuestion.setAttribute(
       "src",
@@ -70,19 +66,35 @@ function applyQuestion(qNum) {
         "src",
         "./Images/" + qNum + "/" + qNum + "-" + aNum + ".png"
       );
-      addAnswers.setAttribute("onclick", "nextTest(" + (qNum + 1) + ")");
+      addAnswers.setAttribute("onclick", "nextTest(" + qNum + ")");
       htmlAnswers.appendChild(addAnswers);
     }
+  } else if (qNum > maxQNum) {
+    // remove the question section
+    htmlWholeQuestion.remove()
+
+    // calcute the number of correct answers
+    let answerCounter = 0;
+    for (let i = 0; i <= 30; i++) {
+      if (userAnswers[i] == correctAnswers[i]) {
+        answerCounter++;
+      }
+    }
+    answerCounter = ((answerCounter / 30) * 100).toFixed(2)
+    console.log(answerCounter);
+    htmlResult.innerHTML = `
+    <p>${answerCounter}%</p>`
   }
 }
 
-function nextTest(testNum) {
+function nextTest(qNum) {
   // get the clicked element's ID
   window.onclick = (e) => {
     userAnswers.push(e.target.id);
   };
 
-  applyQuestion(testNum);
+  // show next question
+  applyQuestion(qNum + 1);
 }
 
 applyQuestion(1);

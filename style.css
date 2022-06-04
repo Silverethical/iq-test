@@ -147,7 +147,7 @@ ul > li {
 body {
   font: normal 400 16px "Glory", sans-serif;
   line-height: 20px;
-  color: var(--light);
+  color: var(--dark);
   background-image: url(brains-from-different-sides-on-blue-background-seamless-pattern-.jpg);
   background-repeat: repeat;
   text-align: center;
@@ -167,7 +167,7 @@ img {
   border-radius: 100px;
 }
 
-#whole-question {
+#foreground {
   background: rgba(237, 242, 245, 0.85);
   max-width: 1000px;
   margin: 20px auto;
@@ -180,14 +180,11 @@ img {
   font-size: 30px;
   line-height: 40px;
   margin: 30px 0;
-  color: black;
 }
 
 #whole-question > p:last-of-type {
   font-size: 20px;
-  line-height: 20px;
   margin-top: 30px;
-  color: black;
 }
 
 #question > img {
