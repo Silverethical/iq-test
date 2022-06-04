@@ -1,3 +1,6 @@
+/* Add Glory font from google */
+@import url("https://fonts.googleapis.com/css2?family=Glory:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+
 /* CSS Reset */
 html,
 body,
@@ -137,18 +140,17 @@ ul > li {
   --dark: #1c1e1f;
 }
 
+.seperator {
+  height: 100px;
+}
+
 body {
   font: normal 400 16px "Glory", sans-serif;
   line-height: 20px;
   color: var(--light);
-  background-color: var(--gray-blue);
   background-image: url(brains-from-different-sides-on-blue-background-seamless-pattern-.jpg);
   background-repeat: repeat;
   text-align: center;
-}
-
-section {
-  padding-top: 50px;
 }
 
 img {
@@ -158,31 +160,32 @@ img {
 
 /* actual CSS */
 #background {
-  display: flex;
-  align-items: center;
-  background: rgba(237, 242, 245, 0.6);
+  background: rgba(237, 242, 245, 0.7);
   margin: 0 auto;
-  width: 1070px;
-  padding: 10px 0;
+  padding: 10px 20px;
+  max-width: 1070px;
   border-radius: 100px;
 }
 
 #whole-question {
-  min-width: 1000px;
-}
-
-#whole-question {
-  background: rgba(237, 242, 245, 0.8);
+  background: rgba(237, 242, 245, 0.85);
   max-width: 1000px;
   margin: 20px auto;
   border-radius: 10%;
   border: dotted cadetblue thick;
 }
 
-#whole-question > p {
+#whole-question > p:first-of-type {
   font-size: 30px;
   line-height: 40px;
   margin: 30px 0;
+  color: black;
+}
+
+#whole-question > p:last-of-type {
+  font-size: 20px;
+  line-height: 20px;
+  margin-top: 30px;
   color: black;
 }
 

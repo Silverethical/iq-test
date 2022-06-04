@@ -6,12 +6,15 @@ let userAnswers = [], // answers that the user has chosen
 
 // add html layout
 document.querySelector("body").innerHTML = `
+<div class="seperator"></div>
+
 <section id="form"></section>
 
 <div id="background">
   <section id="whole-question">
     <p>Please choose the right answer by clicking on it</p>
     <div id="question"></div>
+    <p>Options:</p>
     <div id="answers"></div>
   </section>
 
