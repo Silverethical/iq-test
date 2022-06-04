@@ -75,12 +75,12 @@ function applyQuestion(qNum) {
 
     // calcute the number of correct answers
     let answerCounter = 0;
-    for (let i = 0; i <= 30; i++) {
+    for (let i = 0; i <= maxQNum; i++) {
       if (userAnswers[i] == correctAnswers[i]) {
         answerCounter++;
       }
     }
-    answerCounter = ((answerCounter / 30) * 100).toFixed(2)
+    answerCounter = ((answerCounter / maxQNum) * 100).toFixed(2)
     console.log(answerCounter);
     htmlResult.innerHTML = `
     <p>${answerCounter}%</p>`
