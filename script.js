@@ -46,7 +46,8 @@ function applyQuestion(qNum) {
 
   // qNum == Question number
   if (qNum == 31) {
-    htmlWholeQuestion.querySelector("p").remove();
+    htmlWholeQuestion.querySelectorAll("p")[1].remove();
+    htmlWholeQuestion.querySelectorAll("p")[0].remove();
   } else if (qNum >= 1) {
     // add the next test
     let addQuestion = document.createElement("img");
