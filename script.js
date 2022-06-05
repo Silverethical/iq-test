@@ -11,24 +11,25 @@ document.querySelector("body").innerHTML = `
 
 <div id="background">
   <div id="foreground">
-    <section id="form">
-    </section>
+    <section id="form"></section>
 
     <section id="whole-question"></section>
 
-    <section id="result">
-    <p>IQ=</p>
-    </section>
+    <section id="result"></section>
   </div>
 </div>`;
 
 // selectors
-let htmlWholeQuestion = document.querySelector("#whole-question"),
+let htmlBackground = document.querySelector("#background"),
+  htmlWholeQuestion = document.querySelector("#whole-question"),
   htmlResult = document.querySelector("#result");
 
 // show the question on the page
 function applyQuestion(qNum) {
   if (qNum >= 2) {
+    let htmlQuestion = document.querySelector("#question"),
+    htmlAnswers = document.querySelector("#answers");
+
     // remove previous question if it exists
     if (!!htmlQuestion.querySelector("img")) {
       htmlQuestion.querySelector("img").remove();
@@ -39,6 +40,13 @@ function applyQuestion(qNum) {
         htmlAnswers.querySelectorAll("img")[i].remove();
       }
     }
+
+    // show loading
+    // let addLoading = document.createElement("div");
+    // addLoading.setAttribute("id", "loading");
+    // addLoading.innerHTML = `Loading..`;
+    // htmlBackground.appendChild(addLoading)
+    // htmlBackground.querySelector("#loading").style.display = "flex";
   }
 
   // qNum == question number
@@ -83,16 +91,17 @@ function applyQuestion(qNum) {
     htmlWholeQuestion.remove()
 
     // calcute the number of correct answers
-    let answerCounter = 0;
-    for (let i = 0; i <= 30; i++) {
+    let answerCounter = 0,
+      answerPercentage;
+    for (let i = 0; i <= maxQNum; i++) {
       if (userAnswers[i] == correctAnswers[i]) {
         answerCounter++;
       }
     }
-    answerCounter = ((answerCounter / 30) * 100).toFixed(2)
-    console.log(answerCounter);
+    answerPercentage = ((answerCounter / maxQNum) * 100).toFixed(2)
     htmlResult.innerHTML = `
-    <p>${answerCounter}%</p>`
+    <p>Your score is:<br>
+    ${answerPercentage}% (${answerCounter}/${maxQNum})</p>`
   }
 }
 
@@ -106,4 +115,4 @@ function nextTest(qNum) {
   applyQuestion(qNum + 1);
 }
 
-// applyQuestion(1);
+applyQuestion(1);
