@@ -107,8 +107,10 @@ function applyQuestion(qNum) {
 
     // print the result
     htmlResult.innerHTML = `
+    <img src="demo.gif">
     <p>Your score is:<br>
-    ${result}% (${answerCounter}/${maxQNum})</p>`;
+    ${result}% (${answerCounter}/${maxQNum})<br>
+    </p>`;
   }
 }
 

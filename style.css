@@ -148,7 +148,7 @@ body {
   font: normal 400 16px "Glory", sans-serif;
   line-height: 20px;
   color: var(--dark);
-  background-image: url(brains-from-different-sides-on-blue-background-seamless-pattern-.jpg);
+  background-image: url(./brains-background.jpg);
   background-repeat: repeat;
   text-align: center;
 }
@@ -228,7 +228,7 @@ img {
   transform: scale(1.15);
 }
 
-#result > p {
+#result {
   position: absolute;
   top: 50%;
   left: 50%;
