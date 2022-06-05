@@ -13,38 +13,44 @@ document.querySelector("body").innerHTML = `
   <div id="foreground">
     <section id="form"></section>
 
-    <section id="whole-question">
-      <p>Please choose the right answer by clicking on it</p>
-      <div id="question"></div>
-      <p>Options:</p>
-      <div id="answers"></div>
-    </section>
+    <section id="whole-question"></section>
 
     <section id="result"></section>
-    </div>
-  </div>`;
+  </div>
+</div>`;
 
 // selectors
 let htmlWholeQuestion = document.querySelector("#whole-question"),
-  htmlQuestion = document.querySelector("#question"),
-  htmlAnswers = document.querySelector("#answers"),
   htmlResult = document.querySelector("#result");
 
 // show the question on the page
 function applyQuestion(qNum) {
-  // remove previous question if it exists
-  if (!!htmlQuestion.querySelector("img")) {
-    htmlQuestion.querySelector("img").remove();
-  }
-  // remove options for previous question if they exist
-  if (!!htmlAnswers.querySelectorAll("img")) {
-    for (let i = htmlAnswers.querySelectorAll("img").length - 1; i >= 0; i--) {
-      htmlAnswers.querySelectorAll("img")[i].remove();
+  if (qNum >= 2) {
+    // remove previous question if it exists
+    if (!!htmlQuestion.querySelector("img")) {
+      htmlQuestion.querySelector("img").remove();
+    }
+    // remove options for previous question if they exist
+    if (!!htmlAnswers.querySelectorAll("img")) {
+      for (let i = htmlAnswers.querySelectorAll("img").length - 1; i >= 0; i--) {
+        htmlAnswers.querySelectorAll("img")[i].remove();
+      }
     }
   }
 
   // qNum == question number
   if (qNum >= 1 && qNum <= maxQNum) {
+    // add layout
+    htmlWholeQuestion.innerHTML = `
+    <p>Please choose the right answer by clicking on it</p>
+    <div id="question"></div>
+    <p>Options:</p>
+    <div id="answers"></div>`;
+
+    // selectors
+    let htmlQuestion = document.querySelector("#question"),
+    htmlAnswers = document.querySelector("#answers");
+
     // add the next question
     let addQuestion = document.createElement("img");
     addQuestion.setAttribute(
@@ -97,4 +103,4 @@ function nextTest(qNum) {
   applyQuestion(qNum + 1);
 }
 
-applyQuestion(1);
+// applyQuestion(1);
