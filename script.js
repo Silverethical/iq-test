@@ -1,20 +1,17 @@
 let maxQNum = 30, // maximum number of questions
-userAnswers = [], // answers that the user has chosen
+  userAnswers = [], // answers that the user has chosen
   correctAnswers = [
-    3, 1, 5, 5, 2, 1, 2, 2, 2, 6, 4, 1, 4, 7, 2, 3, 1, 6, 5, 8, 4, 4, 7, 6,
-    4, 7, 7, 3, 2, 8,
+    3, 1, 5, 5, 2, 1, 2, 2, 2, 6, 4, 1, 4, 7, 2, 3, 1, 6, 5, 8, 4, 4, 7, 6, 4,
+    7, 7, 3, 2, 8,
   ]; // the correct answers to be compared with user's answers
 
 // add html layout
 document.querySelector("body").innerHTML = `
 <div class="seperator"></div>
-
 <div id="background">
   <div id="foreground">
     <section id="form"></section>
-
     <section id="whole-question"></section>
-
     <section id="result"></section>
   </div>
 </div>`;
@@ -27,17 +24,22 @@ let htmlBackground = document.querySelector("#background"),
 // show the question on the page
 function applyQuestion(qNum) {
   if (qNum >= 2) {
-    let htmlQuestion = document.querySelector("#question"),
-    htmlAnswers = document.querySelector("#answers");
+    // select <img> in #question and #answers
+    let htmlQuestionImg = document
+        .querySelector("#question")
+        .querySelector("img"),
+      htmlAnswersImg = document
+        .querySelector("#answers")
+        .querySelectorAll("img");
 
     // remove previous question if it exists
-    if (!!htmlQuestion.querySelector("img")) {
-      htmlQuestion.querySelector("img").remove();
+    if (!!htmlQuestionImg) {
+      htmlQuestionImg.remove();
     }
     // remove options for previous question if they exist
-    if (!!htmlAnswers.querySelectorAll("img")) {
-      for (let i = htmlAnswers.querySelectorAll("img").length - 1; i >= 0; i--) {
-        htmlAnswers.querySelectorAll("img")[i].remove();
+    if (!!htmlAnswersImg) {
+      for (let i = htmlAnswersImg.length - 1; i >= 0; i--) {
+        htmlAnswersImg[i].remove();
       }
     }
 
@@ -51,24 +53,25 @@ function applyQuestion(qNum) {
 
   // qNum == question number
   if (qNum >= 1 && qNum <= maxQNum) {
-    // add layout
+    // add the overall layout
     htmlWholeQuestion.innerHTML = `
     <p>Please choose the right answer by clicking on it</p>
     <div id="question"></div>
     <p>Options:</p>
     <div id="answers"></div>`;
 
-    // selectors
+    // select #question and #answers
     let htmlQuestion = document.querySelector("#question"),
-    htmlAnswers = document.querySelector("#answers");
+      htmlAnswers = document.querySelector("#answers");
 
-    // add the next question
+    // add the question
     let addQuestion = document.createElement("img");
     addQuestion.setAttribute(
       "src",
       "./Images/" + qNum + "/test" + qNum + ".png"
     );
     htmlQuestion.appendChild(addQuestion);
+
     let itemNum; // itemNum = number of items in the folder
     if (qNum >= 13) {
       itemNum = 9;
@@ -88,20 +91,24 @@ function applyQuestion(qNum) {
     }
   } else if (qNum > maxQNum) {
     // remove the question section
-    htmlWholeQuestion.remove()
+    htmlWholeQuestion.remove();
 
     // calcute the number of correct answers
     let answerCounter = 0,
-      answerPercentage;
+      result;
     for (let i = 0; i <= maxQNum; i++) {
       if (userAnswers[i] == correctAnswers[i]) {
-        answerCounter++;
+        answerCounter++; // number of correct answers
       }
     }
-    answerPercentage = ((answerCounter / maxQNum) * 100).toFixed(2)
+
+    // correct answers in percentage
+    result = ((answerCounter / maxQNum) * 100).toFixed(2);
+
+    // print the result
     htmlResult.innerHTML = `
     <p>Your score is:<br>
-    ${answerPercentage}% (${answerCounter}/${maxQNum})</p>`
+    ${result}% (${answerCounter}/${maxQNum})</p>`;
   }
 }
 
