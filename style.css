@@ -191,6 +191,8 @@ img {
   min-height: 700px;
 }
 
+/*ghazaleh*/
+
 #whole-question > p:first-of-type {
   font-size: 30px;
   line-height: 40px;
@@ -224,4 +226,12 @@ img {
 
 #answers > img:hover {
   transform: scale(1.15);
+}
+
+#result >p {
+  position: absolute;
+  top:50%;
+  left: 50%;
+  transform: translate(-50% , -50%);
+  font: optional;
 }
