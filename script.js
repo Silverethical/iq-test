@@ -11,11 +11,14 @@ document.querySelector("body").innerHTML = `
 
 <div id="background">
   <div id="foreground">
-    <section id="form"></section>
+    <section id="form">
+    </section>
 
     <section id="whole-question"></section>
 
-    <section id="result"></section>
+    <section id="result">
+    <p>IQ=</p>
+    </section>
   </div>
 </div>`;
 
