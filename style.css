@@ -154,7 +154,7 @@ body {
 }
 
 img {
-  border-radius: 10px;
+  border-radius: 5px;
   transition: all 0.4s ease-in-out;
 }
 
@@ -164,7 +164,7 @@ img {
   margin: 0 auto;
   padding: 10px 20px;
   max-width: 1070px;
-  border-radius: 100px;
+  border-radius: 20px;
   position: relative;
 }
 
@@ -186,7 +186,7 @@ img {
   background: rgba(237, 242, 245, 0.85);
   max-width: 1000px;
   margin: 20px auto;
-  border-radius: 10%;
+  border-radius: 20px;
   border: dotted cadetblue thick;
   min-height: 700px;
 }
