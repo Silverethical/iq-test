@@ -118,7 +118,7 @@ ul > li {
 
 /* General CSS */
 :root {
-  --blue: #006ee3;
+  --blue: #006ee3e1;
   --indigo: #6610f2;
   --purple: #6f42c1;
   --pink: #e83e8c;
@@ -141,7 +141,7 @@ ul > li {
 }
 
 .seperator {
-  height: 100px;
+  height: 50px;
 }
 
 body {
@@ -153,9 +153,14 @@ body {
   text-align: center;
 }
 
-img {
+img,
+a {
   border-radius: 5px;
-  transition: all 0.4s ease-in-out;
+  transition: all 0.35s ease-in-out;
+}
+
+a:hover {
+  font-size: 40px !important;
 }
 
 /* actual CSS */
@@ -168,20 +173,6 @@ img {
   position: relative;
 }
 
-#loading {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 100px;
-  background-color: var(--light);
-  font-size: 200px;
-  display: none;
-  align-items: center;
-  justify-content: center;
-}
-
 #foreground {
   background: rgba(237, 242, 245, 0.85);
   max-width: 1000px;
@@ -191,7 +182,20 @@ img {
   min-height: 700px;
 }
 
-/*ghazaleh*/
+#form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#form > a {
+  color: rgba(237, 242, 245, 0.9);
+  background-color: var(--blue);
+  padding: 20px 40px;
+  border-radius: 10px;
+  font-size: 34px;
+}
 
 #whole-question > p:first-of-type {
   font-size: 30px;
@@ -219,20 +223,35 @@ img {
 }
 
 #answers > img {
-  /* margin-top: 10px; */
   background-color: var(--light);
   cursor: pointer;
 }
 
 #answers > img:hover {
-  transform: scale(1.15);
+  transform: scale(1.1);
 }
 
 #result {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50% , -50%);
-  font-size: 36px;
-  line-height: 50px;
+  transform: translate(-50%, -50%);
+}
+
+#result > div {
+  margin-bottom: 20px;
+}
+
+#result > div:last-of-type {
+  margin: 0;
+}
+
+#result > div > p {
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 34px;
+}
+
+#result > div > span {
+  font-size: 24px;
 }

@@ -1,4 +1,6 @@
-let maxQNum = 30, // maximum number of questions
+let timeWasted, // time wasted before starting the test
+  timeSpent, // time spent on the test
+  maxQNum = 30, // maximum number of questions
   userAnswers = [], // answers that the user has chosen
   correctAnswers = [
     3, 1, 5, 5, 2, 1, 2, 2, 2, 6, 4, 1, 4, 7, 2, 3, 1, 6, 5, 8, 4, 4, 7, 6, 4,
@@ -10,7 +12,9 @@ document.querySelector("body").innerHTML = `
 <div class="seperator"></div>
 <div id="background">
   <div id="foreground">
-    <section id="form"></section>
+    <section id="form">
+      <a onclick="calcTimeWasted(); applyQuestion(1)" href="#">Start the test</a>
+    </section>
     <section id="whole-question"></section>
     <section id="result"></section>
   </div>
@@ -18,11 +22,17 @@ document.querySelector("body").innerHTML = `
 
 // selectors
 let htmlBackground = document.querySelector("#background"),
+  htmlForm = document.querySelector("#form"),
   htmlWholeQuestion = document.querySelector("#whole-question"),
   htmlResult = document.querySelector("#result");
 
 // show the question on the page
 function applyQuestion(qNum) {
+  // remove #form if it exist
+  if (!!htmlForm) {
+    htmlForm.remove();
+  }
+  // remove previous <img> tags
   if (qNum >= 2) {
     // select <img> in #question and #answers
     let htmlQuestionImg = document
@@ -42,13 +52,6 @@ function applyQuestion(qNum) {
         htmlAnswersImg[i].remove();
       }
     }
-
-    // show loading
-    // let addLoading = document.createElement("div");
-    // addLoading.setAttribute("id", "loading");
-    // addLoading.innerHTML = `Loading..`;
-    // htmlBackground.appendChild(addLoading)
-    // htmlBackground.querySelector("#loading").style.display = "flex";
   }
 
   // qNum == question number
@@ -86,42 +89,76 @@ function applyQuestion(qNum) {
         "src",
         "./Images/" + qNum + "/" + qNum + "-" + aNum + ".png"
       );
-      addAnswers.setAttribute("onclick", "nextTest(" + qNum + ")");
+      addAnswers.setAttribute(
+        "onclick",
+        "getUserChoice(); applyQuestion(" + (qNum + 1) + ")"
+      );
       htmlAnswers.appendChild(addAnswers);
     }
   } else if (qNum > maxQNum) {
     // remove the question section
     htmlWholeQuestion.remove();
 
-    // calcute the number of correct answers
-    let answerCounter = 0,
-      result;
-    for (let i = 0; i <= maxQNum; i++) {
+    // calcute the answers
+    let answerCounter = 0, // number of correct answers
+      resultScore, // correct answers in percentage
+      result; // string
+    for (let i = 0; i < userAnswers.length; i++) {
       if (userAnswers[i] == correctAnswers[i]) {
-        answerCounter++; // number of correct answers
+        answerCounter++;
       }
     }
+    resultScore = ((answerCounter / maxQNum) * 100).toFixed(2);
 
-    // correct answers in percentage
-    result = ((answerCounter / maxQNum) * 100).toFixed(2);
-
-    // print the result
+    let resultGif;
+    if (resultScore < 50) {
+      resultGif = "./resultFailed.gif";
+      result = "You have failed";
+    } else {
+      resultGif = "./resultSuccess.gif";
+      result = "You have passed";
+    }
+    // show the result
     htmlResult.innerHTML = `
-    <img src="./demo.gif">
-    <p>Your score is:<br>
-    ${result}% (${answerCounter}/${maxQNum})<br>
-    </p>`;
+    <div>
+    <img src="${resultGif}">
+    <p>${result}</p>
+    </div>
+    <div>
+      <span>Your score:</span>
+      <p>${resultScore}% (${answerCounter}/${maxQNum})</p>
+    </div>
+    <div>
+      <span>Time spent:</span>
+      <p>${timeSpent}</p>
+    </div>`;
   }
 }
 
-function nextTest(qNum) {
-  // get the clicked element's ID
+// the getUserChoice() function gets the user's choice, pushes it to
+// an array called userAnswers and calculates the time spent on page.
+function getUserChoice() {
   window.onclick = (e) => {
+    // get the clicked element's ID
     userAnswers.push(e.target.id);
-  };
 
-  // show next question
-  applyQuestion(qNum + 1);
+    // get the time spent on page so far
+    let timeStamp = (e.timeStamp - timeWasted) / 1000;
+    // timeStamp => human readable time in second(s)
+    
+    if (timeStamp <= 60) {
+      timeSpent = timeStamp.toFixed(2) + " seconds";
+    } else {
+      timeSpent = (timeStamp / 60).toFixed(2) + " minute(s)";
+    }
+  };
 }
 
-applyQuestion(1);
+// the calcTimeWasted() function calculates the time spent on page
+// before starting the test; which is basically the wasted time.
+function calcTimeWasted() {
+  window.onclick = (e) => {
+    // get the time spent on page so far
+    timeWasted = e.timeStamp;
+  };
+}
