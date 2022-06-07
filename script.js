@@ -13,7 +13,7 @@ document.querySelector("body").innerHTML = `
 <div id="background">
   <div id="foreground">
     <section id="form">
-      <a onclick="calcTimeWasted(); applyQuestion(1)" href="#">Start the test</a>
+      <a onclick="calcTimeWasted(); removeForm(); applyQuestion(1)" href="#">Start the test</a>
     </section>
     <section id="whole-question"></section>
     <section id="result"></section>
@@ -28,10 +28,6 @@ let htmlBackground = document.querySelector("#background"),
 
 // show the question on the page
 function applyQuestion(qNum) {
-  // remove #form if it exist
-  if (!!htmlForm) {
-    htmlForm.remove();
-  }
   // remove previous <img> tags
   if (qNum >= 2) {
     // select <img> in #question and #answers
@@ -113,24 +109,24 @@ function applyQuestion(qNum) {
     let resultGif;
     if (resultScore < 50) {
       resultGif = "./resultFailed.gif";
-      result = "You have failed";
+      result = "You failed";
     } else {
       resultGif = "./resultSuccess.gif";
-      result = "You have passed";
+      result = "You passed";
     }
     // show the result
     htmlResult.innerHTML = `
     <div>
+    <span>Your score:</span>
+    <p>${resultScore}% (${answerCounter}/${maxQNum})</p>
+    </div>
+    <div>
+    <span>Time spent:</span>
+    <p>${timeSpent}</p>
+    </div>
+    <div>
     <img src="${resultGif}">
     <p>${result}</p>
-    </div>
-    <div>
-      <span>Your score:</span>
-      <p>${resultScore}% (${answerCounter}/${maxQNum})</p>
-    </div>
-    <div>
-      <span>Time spent:</span>
-      <p>${timeSpent}</p>
     </div>`;
   }
 }
@@ -145,7 +141,6 @@ function getUserChoice() {
     // get the time spent on page so far
     let timeStamp = (e.timeStamp - timeWasted) / 1000;
     // timeStamp => human readable time in second(s)
-    
     if (timeStamp <= 60) {
       timeSpent = timeStamp.toFixed(2) + " seconds";
     } else {
@@ -161,4 +156,8 @@ function calcTimeWasted() {
     // get the time spent on page so far
     timeWasted = e.timeStamp;
   };
+}
+
+function removeForm() {
+  htmlForm.remove();
 }
