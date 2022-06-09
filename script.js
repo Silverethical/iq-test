@@ -98,7 +98,8 @@ function applyQuestion(qNum) {
     // calcute the answers
     let answerCounter = 0, // number of correct answers
       resultScore, // correct answers in percentage
-      result; // string
+      result, // string = Passed or Failed
+      resultGif; // a fun little gif 
     for (let i = 0; i < userAnswers.length; i++) {
       if (userAnswers[i] == correctAnswers[i]) {
         answerCounter++;
@@ -106,7 +107,6 @@ function applyQuestion(qNum) {
     }
     resultScore = ((answerCounter / maxQNum) * 100).toFixed(2);
 
-    let resultGif;
     if (resultScore < 50) {
       resultGif = "./resultFailed.gif";
       result = "You failed";
