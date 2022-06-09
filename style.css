@@ -255,3 +255,7 @@ a:hover {
 #result > div > span {
   font-size: 24px;
 }
+
+#result > div > img {
+  max-width: 450px;
+}
